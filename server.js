@@ -6,6 +6,7 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 const autRouter = require('./routes/auth')
 const userRouter = require('./routes/users')
+const postsRouter = require("./routes/posts")
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}, ()=>{
     console.log("Mongo DB also connected successfully.")
@@ -16,6 +17,7 @@ app.use(morgan('common'));
 
 app.use('/api/users',autRouter);
 app.use('/api/users',userRouter);
+app.use('/api/posts',postsRouter);
 
 
 app.listen(8080,()=>{
